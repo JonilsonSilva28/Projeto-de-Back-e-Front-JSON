@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+
+    table, td, th{
+      border: 1px solid black;
+      border-spacing: 0px;
+    }
+
+    td, th{
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-top: 5px;
+    }
+
+    th{
+      background-color:blue;
+      color: white;
+    }
+
+  </style>
+
+  <script type="text/javascript">
+
+    function excluir(ra){
+
+      alert ("Excluindo o RA número"+ra);
+    }
+
+    function editar(ra, nome, idade){
+      document.getElementById("ra").value   = ra;
+			document.getElementById("nome").value = nome;
+      document.getElementById("idade").value = idade;
+    }
+    
+    function consultarBancoDeDados(){
+
+      var banco = [ 
+                  {"ra":"123", "nome":"maria", "idade":34}, 
+                  {"ra":"456", "nome":"joao","idade":56},
+                  {"ra":"789", "nome":"ana","idade":32},
+                ];
+
+      var total_linhas = banco.length;
+
+      var linhas = "";
+
+      for (var i = 0; i<total_linhas;i++){
+        linhas += `<tr>
+								<td><img src="img/excluir.png" onClick= "excluir ('${banco[i].ra}')"/></td>
+								<td><img src="img/botao-editar.png" onClick="editar('${banco[i].ra}','${banco[i].nome}','${banco[i].idade}')"/></td>
+								<td>${banco[i].ra}</td>
+								<td>${banco[i].nome}</td>
+                <td>${banco[i].idade}</td>
+							  </tr>`;
+      }
+
+      document.getElementById("corpoTabela").innerHTML = linhas;
+      
+    }
+
+  </script>
+
+</head>
+
+<body>
+    <form>
+      <label for="ra">RA:</label> <input id="ra" type="text" disabled/><br>
+      <label for="nome">Nome:</label> <input id=" nome" type="text"/><br><br>
+      <label for="nome">Idade:</label> <input id=" idade" type="text"/><br><br>
+
+      <input type="reset" value="Limpar"/>
+      <input type="button" value="Salvar"/>
+      <input type="button" value="Consultar" onClick="consultarBancoDeDados()"/>
+
+    </form> 
+
+    <br><br>
+
+    <table>
+        <thead>
+          <tr>
+            <th>Excluir</th>
+            <th>Editar</th>
+            <th>RA</th>
+            <th>Nome</th>
+            <th>Idade</th>
+          </tr>
+      </thead>
+      <tbody id="corpoTabela">
+      
+      </tbody>
+    </table>
+
+  </body>
+</html>
