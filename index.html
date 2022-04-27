@@ -1,102 +1,103 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+<html>
+	<head>
+		<title></title>
 
-  <style>
+		<style>
 
-    table, td, th{
-      border: 1px solid black;
-      border-spacing: 0px;
-    }
+			table, td, th{
+				border: 1px solid black;
+				border-spacing: 0px;
+			}
 
-    td, th{
-      padding-left: 10px;
-      padding-right: 10px;
-      padding-top: 5px;
-    }
+			td,th{
+				padding-left: 10px;	
+				padding-right: 10px;	
+				padding-top: 5px;	
+			}
 
-    th{
-      background-color:blue;
-      color: white;
-    }
+			th{
+				background-color: blue;
+				color: white;
+			}
+			
 
-  </style>
+		</style>
 
-  <script type="text/javascript">
+		<script type="text/javascript">
 
-    function excluir(ra){
+			function excluir(ra){
+				alert("Excluindo o ra número " + ra);
+			}
 
-      alert ("Excluindo o RA número"+ra);
-    }
 
-    function editar(ra, nome, idade){
-      document.getElementById("ra").value   = ra;
-			document.getElementById("nome").value = nome;
-      document.getElementById("idade").value = idade;
-    }
-    
-    function consultarBancoDeDados(){
+			function editar(ra, nome, idade){
+				document.getElementById("ra").value   = ra;
+				document.getElementById("nome").value = nome;
+				document.getElementById("idade").value = idade;
+			}
 
-      var banco = [ 
-                  {"ra":"123", "nome":"maria", "idade":34}, 
-                  {"ra":"456", "nome":"joao","idade":56},
-                  {"ra":"789", "nome":"ana","idade":32},
-                ];
+			function consultarBancoDeDados(){
 
-      var total_linhas = banco.length;
+				var banco = [   
+					{"ra":"123", "nome":"maria", "idade":34}, 
+					{"ra":"456", "nome":"joao","idade":56},
+					{"ra":"789", "nome":"ana","idade":32}
+				];
 
-      var linhas = "";
+				var ultimoIndice = banco.length-1;
 
-      for (var i = 0; i<total_linhas;i++){
-        linhas += `<tr>
-								<td><img src="img/excluir.png" onClick= "excluir ('${banco[i].ra}')"/></td>
-								<td><img src="img/botao-editar.png" onClick="editar('${banco[i].ra}','${banco[i].nome}','${banco[i].idade}')"/></td>
-								<td>${banco[i].ra}</td>
-								<td>${banco[i].nome}</td>
-                <td>${banco[i].idade}</td>
-							  </tr>`;
-      }
+				var linhas = "";
 
-      document.getElementById("corpoTabela").innerHTML = linhas;
-      
-    }
+				for (indice=0;indice<=ultimoIndice;indice++){
+					linhas += `
+						<tr>
+							<td><img src="imagens/excluir.png" onClick="excluir('${banco[indice].ra}')"/></td>
+							<td><img src="imagens/editar.png" onClick="editar('${banco[indice].ra}','${banco[indice].nome}','${banco[indice].idade}')"/></td>
+							<td>${banco[indice].ra}</td>
+							<td>${banco[indice].nome}</td>
+							<td>${banco[indice].idade}</td>
+						</tr>`;
+				}
 
-  </script>
+				document.getElementById("corpoTabela").innerHTML = linhas;				
 
-</head>
+			}
 
-<body>
-    <form>
-      <label for="ra">RA:</label> <input id="ra" type="text" disabled/><br>
-      <label for="nome">Nome:</label> <input id=" nome" type="text"/><br><br>
-      <label for="nome">Idade:</label> <input id=" idade" type="text"/><br><br>
+		</script>
 
-      <input type="reset" value="Limpar"/>
-      <input type="button" value="Salvar"/>
-      <input type="button" value="Consultar" onClick="consultarBancoDeDados()"/>
+	</head>
 
-    </form> 
+	<body>
+		<form>
+			<label for="ra">  RA......:</label><input id="ra" type="text" disabled/><br>
+			<label for="nome">NOME....:</label><input id="nome" type="text"/><br>
+			<label for="idade">IDADE..:</label><input id="idade" type="text"/><br><br><br>
 
-    <br><br>
+			<input type="button" value="Consultar" onClick="consultarBancoDeDados()"/>
+			<input type="reset" value="limpar"/>
+			<input type="button" value="Salvar"/>
+		</form>
 
-    <table>
-        <thead>
-          <tr>
-            <th>Excluir</th>
-            <th>Editar</th>
-            <th>RA</th>
-            <th>Nome</th>
-            <th>Idade</th>
-          </tr>
-      </thead>
-      <tbody id="corpoTabela">
-      
-      </tbody>
-    </table>
+		<br><br>
 
-  </body>
+		<table>
+			<thead>
+				<tr>
+					<th>Excluir</th>
+					<th>Editar</th>
+					<th>RA</th>
+					<th>NOME</th>
+					<th>IDADE</th>
+				</tr>
+			</thead>
+			<tbody id="corpoTabela">
+
+			</tbody>
+		</table>
+
+	</body>
 </html>
+
+
+
